@@ -6,3 +6,16 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
      - run: echo "This is me"
+
+  print_a_statement_on_shell:
+    runs-on: ubuntu-22.04
+    steps:
+      - run: print('This is my world')
+        shell: python
+
+  print_using_another_repo:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/hello-world-javascript-action@081a6d193d1dcb38460df1e6927486d748730f9d 
+        with:
+          who-to-greet: "This World"
