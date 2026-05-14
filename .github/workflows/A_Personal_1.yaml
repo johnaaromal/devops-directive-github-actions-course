@@ -24,6 +24,8 @@ jobs:
   print_something_else:
     runs-on: ubuntu-22.04
     needs: print_a_statement
-    steps:
+    steps:needs:
+        - print_a_statement
+        - print_a_statement_on_shell
       - run: echo "What about now"
       
