@@ -15,7 +15,9 @@ jobs:
 
   print_using_another_repo:
     runs-on: ubuntu-22.04
+    needs:
+      - print_a_statement
+      - print_a_statement_on_shell
     steps:
-      - uses: actions/hello-world-javascript-action@081a6d193d1dcb38460df1e6927486d748730f9d 
-        with:
-          who-to-greet: "This World"
+      - run: echo "This is how it should be"
+      
