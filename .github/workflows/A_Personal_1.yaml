@@ -20,4 +20,10 @@ jobs:
       - print_a_statement_on_shell
     steps:
       - run: echo "This is how it should be"
+
+  print_something_else:
+    runs-on: ubuntu-22.04
+    needs: print_a_statement
+    steps:
+      - run: echo "What about now"
       
