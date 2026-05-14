@@ -1,0 +1,8 @@
+name: Personal
+on: 
+  workflow_dispatch:
+jobs:
+  print_a_statement:
+    runs-on: ubuntu-22.04
+    steps:
+     - run: echo "This is me"
