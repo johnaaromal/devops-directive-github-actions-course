@@ -4,7 +4,7 @@ jobs:
   this_is_job_1:
     runs-on: ubuntu-22.04
     outputs:
-      value: ${{steps.J1.outputs.foo1}}
+      value: ${{steps.J1.outputs.foo}}
     steps:
       - name: Lets_have_fun
         id: J1
@@ -13,11 +13,11 @@ jobs:
           foo=life
           echo "foo1=${foo}" >> "$GITHUB_OUTPUT"
           echo "foo2=${foo}" >> "$GITHUB_ENV"
-          echo "For current step we value for output as $GITHUB_OUTPUT and env as $GITHUB_ENV"
+          echo "For current step we value for output as $GITHUB_OUTPUT.foo1 and env as $GITHUB_ENV.foo2"
       - name: Life_is_a_dream
         run : |
           echo 'Job1 step 2'
-          echo "For current step we value for output as $GITHUB_OUTPUT and env as $GITHUB_ENV"  
+          echo "For current step we value for output as $GITHUB_OUTPUT.foo1 and env as $GITHUB_ENV.foo2"  
 
   this_is_job_3:
     runs-on: ubuntu-22.04
@@ -28,7 +28,7 @@ jobs:
         run : |
           echo 'Job2 step 1'
           echo "Do i have value of foo : ${foo}"
-          echo "For current step we value for output as $GITHUB_OUTPUT and env as $GITHUB_ENV"'  
+          echo "For current step we value for output as $GITHUB_OUTPUT.foo1 and env as $GITHUB_ENV.foo2"  
           echo "Can i take it from previous job ${{needs.this_is_job_1.outputs.value}}"
 
   
