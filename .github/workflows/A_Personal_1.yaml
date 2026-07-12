@@ -5,4 +5,16 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - run : echo 'Hello Suckers'
-    
+  this_is_job_2:
+    runs-on: ubuntu-22.04
+    steps:
+    - run: print(Hello World)
+      shell: python
+  this_is_job_3:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/hello-world-javascript-action@v1
+        with:
+          who-to-greet: "from an action in github action marketplace"
+
+  
