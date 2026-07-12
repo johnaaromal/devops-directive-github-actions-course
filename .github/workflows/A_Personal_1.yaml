@@ -12,6 +12,9 @@ jobs:
       shell: python
   this_is_job_3:
     runs-on: ubuntu-22.04
+    needs: 
+      - this_is_job_1
+      - this_is_job_2 
     steps:
       - uses: actions/hello-world-javascript-action@v1
         with:
