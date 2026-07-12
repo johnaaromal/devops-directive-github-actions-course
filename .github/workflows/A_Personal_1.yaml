@@ -1,31 +1,8 @@
-name: Personal
-on: 
-  workflow_dispatch:
+name: Trial1
+on: workflow_dispatch
 jobs:
-  print_a_statement:
+  this_is_job_1:
     runs-on: ubuntu-22.04
     steps:
-     - run: echo "This is me"
-
-  print_a_statement_on_shell:
-    runs-on: ubuntu-22.04
-    steps:
-      - run: print('This is my world')
-        shell: python
-
-  print_using_another_repo:
-    runs-on: ubuntu-22.04
-    needs:
-      - print_a_statement
-      - print_a_statement_on_shell
-    steps:
-      - run: echo "This is how it should be"
-
-  print_something_else:
-    runs-on: ubuntu-22.04
-    needs: print_a_statement
-    steps:needs:
-        - print_a_statement
-        - print_a_statement_on_shell
-      - run: echo "What about now"
-      
+      - run : echo 'Hello Suckers'
+    
