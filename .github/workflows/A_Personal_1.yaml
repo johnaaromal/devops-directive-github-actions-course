@@ -13,11 +13,11 @@ jobs:
           foo=life
           echo "foo1=${foo}" >> "$GITHUB_OUTPUT"
           echo "foo2=${foo}" >> "$GITHUB_ENV"
-          echo 'For current step we value for output as "$GITHUB_OUTPUT" and env as "$GITHUB_ENV"'
+          echo "For current step we value for output as $GITHUB_OUTPUT and env as $GITHUB_ENV"
       - name: Life_is_a_dream
         run : |
           echo 'Job1 step 2'
-          echo 'For current step we value for output as "$GITHUB_OUTPUT" and env as "$GITHUB_ENV"'  
+          echo "For current step we value for output as $GITHUB_OUTPUT and env as $GITHUB_ENV"  
 
   this_is_job_3:
     runs-on: ubuntu-22.04
@@ -27,8 +27,8 @@ jobs:
       - name: Life_is_a_dream 2
         run : |
           echo 'Job2 step 1'
-          echo 'Do i have value of foo : ${foo}'
-          echo 'For current step we value for output as "$GITHUB_OUTPUT" and env as "$GITHUB_ENV"'  
-          echo 'Can i take it from previous job ${{needs.this_is_job_1.outputs.value}}'
+          echo "Do i have value of foo : ${foo}"
+          echo "For current step we value for output as $GITHUB_OUTPUT and env as $GITHUB_ENV"'  
+          echo "Can i take it from previous job ${{needs.this_is_job_1.outputs.value}}"
 
   
