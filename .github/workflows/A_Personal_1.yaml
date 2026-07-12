@@ -3,20 +3,32 @@ on: workflow_dispatch
 jobs:
   this_is_job_1:
     runs-on: ubuntu-22.04
+    outputs:
+      value: ${{steps.J1.outputs.foo1}}
     steps:
-      - run : echo 'Hello Suckers'
-  this_is_job_2:
-    runs-on: ubuntu-22.04
-    steps:
-    - run: print('Hello World')
-      shell: python
+      - name: Lets_have_fun
+        id: J1
+        run : |
+          echo 'Hello Suckers'
+          foo=life
+          echo "foo1=${foo}" >> "$GITHUB_OUTPUT"
+          echo "foo2=${foo}" >> "$GITHUB_ENV"
+          echo 'For current step we value for output as "$GITHUB_OUTPUT" and env as "$GITHUB_ENV"'
+      - name: Life_is_a_dream
+        run : |
+          echo 'Job1 step 2'
+          echo 'For current step we value for output as "$GITHUB_OUTPUT" and env as "$GITHUB_ENV"'  
+
   this_is_job_3:
     runs-on: ubuntu-22.04
     needs: 
       - this_is_job_1
     steps:
-      - uses: actions/hello-world-javascript-action@v1
-        with:
-          who-to-greet: "from an action in github action marketplace"
+      - name: Life_is_a_dream 2
+        run : |
+          echo 'Job2 step 1'
+          echo 'Do i have value of foo : ${foo}'
+          echo 'For current step we value for output as "$GITHUB_OUTPUT" and env as "$GITHUB_ENV"'  
+          echo 'Can i take it from previous job ${{needs.this_is_job_1.outputs.value}}'
 
   
