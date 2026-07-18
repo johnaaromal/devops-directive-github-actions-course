@@ -17,6 +17,7 @@ jobs:
           path: artifact.txt
 
   waiting:
+    needs: creating_artifact
     runs-on: ubuntu-22.04
     steps: 
       - name: waiting
@@ -24,6 +25,7 @@ jobs:
 
 
   download_artifact: 
+    needs: waiting
     runs-on: ubuntu-22.04
     steps: 
       - name: download 
