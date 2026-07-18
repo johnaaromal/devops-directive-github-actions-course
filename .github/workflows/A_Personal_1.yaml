@@ -1,32 +1,34 @@
-name: Trial1
-on: workflow_dispatch
-jobs:
-  this_is_job_1:
-    runs-on: ubuntu-22.04
-    outputs:
-      value: ${{steps.J1.outputs.foo1}}
-    steps:
-      - name: Lets_have_fun
-        id: J1
-        run : |
-          echo 'Hello Suckers'
-          foo=life
-          echo "foo1=${foo}" >> "$GITHUB_OUTPUT"
-          echo "foo2=${foo}" >> "$GITHUB_ENV"
-      - name: Life_is_a_dream
-        run : |
-          echo 'Job1 step 2'
-          echo "Read previous step value : ${foo2}"
-          echo " is this it: ${{steps.J1.outputs.foo1}}" 
+name: John
+on:
+  workflow_dispatch: 
 
-  this_is_job_3:
+jobs: 
+  creating_artifact:
     runs-on: ubuntu-22.04
-    needs: 
-      - this_is_job_1
     steps:
-      - name: Life_is_a_dream 2
-        run : |
-          echo 'Job2 step 1'
-          echo "Can i take it from previous job ${{needs.this_is_job_1.outputs.value}}"
+      - name: Create
+        run: |
+          echo " This is a file" >> artifact.txt
+          echo " created on ${date}" >> artifact.txt
+      - name : upload
+        uses: actions/upload-artifact@v4
+        with: 
+          name: Text
+          path: artifact.txt
 
-  
+  waiting:
+    runs-on: ubuntu-22.04
+    steps: 
+      - name: waiting
+        run: sleep 20
+
+
+  download_artifact: 
+    runs-on: ubuntu-22.04
+    steps: 
+      - name: download 
+        uses: actions/download-artifact@v4
+        with:
+          name: Text
+
+
